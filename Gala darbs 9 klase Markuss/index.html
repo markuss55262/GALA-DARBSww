@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333333; /* Dark grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            background-color: #000000; /* Black background */
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.5); /* Orange shadow */
+            padding: 20px;
+            max-width: 300px;
+            width: 100%;
+            text-align: right;
+        }
+        .calculator-screen {
+            border: none;
+            background-color: #f0f0f0; /* Light grey display background */
+            font-size: 2em;
+            padding: 10px;
+            width: 100%;
+            text-align: right;
+            outline: none;
+            color: #000000; /* Black text */
+        }
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .calculator-keys button {
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 1.2em;
+            background-color: #ff8800; /* Orange buttons */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #ffffff; /* White text */
+        }
+        .calculator-keys button:hover {
+            background-color: #ffaa33; /* Lighter orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="calculator-screen" value="" disabled>
+        <div class="calculator-keys">
+            <button value="7">7</button>
+            <button value="8">8</button>
+            <button value="9">9</button>
+            <button value="/">/</button>
+            <button value="4">4</button>
+            <button value="5">5</button>
+            <button value="6">6</button>
+            <button value="*">*</button>
+            <button value="1">1</button>
+            <button value="2">2</button>
+            <button value="3">3</button>
+            <button value="-">-</button>
+            <button value="0">0</button>
+            <button value=".">.</button>
+            <button id="clear-all" value="clear">Clear All</button>
+            <button id="clear" value="clear">Clear</button>
+            <button id="equals" value="=">=</button>
+            <button value="+">+</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const screen = document.querySelector('.calculator-screen');
+            const keys = document.querySelector('.calculator-keys');
+
+            keys.addEventListener('click', function(e) {
+                if (e.target.matches('button')) {
+                    const key = e.target;
+                    const action = key.value;
+                    const keyValue = screen.value;
+
+                    if (!isNaN(action) || action === '.') {
+                        screen.value = keyValue === '0' ? action : keyValue + action;
+                    } else if (action === '+' || action === '-' || action === '*' || action === '/') {
+                        screen.value = keyValue + ' ' + action + ' ';
+                    } else if (action === '=') {
+                        const expression = screen.value;
+                        screen.value = eval(expression);
+... (14 lines left)

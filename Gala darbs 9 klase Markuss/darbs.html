@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktīva Viktorīna</title>
+    <script>
+        function checkAnswer() {
+            var answer = document.getElementById("userAnswer").value; // Corrected element ID
+            var feedback = document.getElementById("feedback"); // Changed ID for feedback
+
+            if (answer === "112") {
+                feedback.innerHTML = "Pareizi!";
+            } else {
+                feedback.innerHTML = "Nepareizi, mēģini vēlreiz.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>JavaScript Viktorīna</h1>
+    <p>CIK cilvēku ir pasaulē?</p>
+
+    <input type="text" id="userAnswer" placeholder="Ievadiet atbildi">
+    <button onclick="checkAnswer()">Pārbaudīt</button>
+
+    <p id="feedback"></p>
+</body>
+</html>
